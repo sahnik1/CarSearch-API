@@ -46,10 +46,14 @@ class YearList(Resource):
         return { 'Status' : 'Success', 'Records_Found' : len(datajson), 'Data' : datajson }, 200
 
 class ComboList(Resource):
-    def get(self, year, make):
+    def get(self, year, make, model):
         con = sqlite3.connect("./data.db")
         cur = con.cursor()
-        cur.execute("SELECT * FROM cars WHERE year=:year AND make=:make;", {'year' : int(year), 'make' : make.upper()})
+        if (model.lower() == 'any'):
+            cur.execute("SELECT * FROM cars WHERE year=:year AND make LIKE :make AND model LIKE :model;", {'year' : int(year), 'make' : '%'+(make.upper())+'%', 'model' : '%'})
+        else:
+            cur.execute("SELECT * FROM cars WHERE year=:year AND make LIKE :make AND model LIKE :model;", {'year' : int(year), 'make' : '%'+(make.upper())+'%', 'model' : '%'+(model.upper())+'%'})
+        
         #con.commit()
         results = cur.fetchall()
 
@@ -59,11 +63,11 @@ class ComboList(Resource):
         datatemp = json.dumps(data)
         datajson = json.loads(datatemp)
 
-        return { 'Status' : 'Success', 'Year' : year, 'Make' : make, 'Records_Found' : len(datajson), 'Data' : datajson }, 200
+        return { 'Status' : 'Success', 'Year' : year, 'Make' : make, 'Model' : model, 'Records_Found' : len(datajson), 'Data' : datajson }, 200
 
 api.add_resource(IdSearch, '/cars/id=<int:carid>')
 api.add_resource(YearList, '/cars/year=<int:year>')
-api.add_resource(ComboList, '/cars/year=<int:year>,make=<string:make>')
+api.add_resource(ComboList, '/cars/year=<int:year>,make=<string:make>,model=<string:model>')
 
 if __name__ == '__main__':
     app.run(debug=True)
