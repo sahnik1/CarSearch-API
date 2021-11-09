@@ -77,6 +77,7 @@ https://carsearch-api.herokuapp.com/cars/year=2005
 {
     "Status": "Success",
     "Records_Found": 332,
+    "Year": 2005,
     "Data": [
         {
             "id": 3365,
@@ -97,6 +98,136 @@ https://carsearch-api.herokuapp.com/cars/year=2005
 }
 ```
 
+## By Make Alone:
+
+#### Query: 
+```html
+https://carsearch-api.herokuapp.com/cars/make=Tesla
+```
+#### Output:
+```json
+{
+    "Status": "Success",
+    "Make": "Tesla",
+    "Records_Found": 12,
+    "Data": [
+        {
+            "id": 6844,
+            "year": 2012,
+            "category": "LARGE CARS",
+            "make": "TESLA",
+            "model": "MODEL S",
+            "No_Of_Recalls": 21,
+            "Vehicles_Affected": 56754,
+            "City_MPG": 88,
+            "Highway_MPG": 90,
+            "Combined_MPG": 89,
+            "Cylinders": 0,
+            "Eng_Displ": 0.0,
+            "Transmission": "AUTOMATIC (A1)",
+            "Drive": "REAR-WHEEL DRIVE"
+        }, ... ]
+}
+```
+
+## By Make Alone:
+
+#### Query: 
+```html
+https://carsearch-api.herokuapp.com/cars/model=model%20s
+```
+#### Output:
+```json
+{
+    "Status": "Success",
+    "Model": "model s",
+    "Records_Found": 8,
+    "Data": [
+        {
+            "id": 7078,
+            "year": 2013,
+            "category": "LARGE CARS",
+            "make": "TESLA",
+            "model": "MODEL S",
+            "No_Of_Recalls": 21,
+            "Vehicles_Affected": 56754,
+            "City_MPG": 94,
+            "Highway_MPG": 97,
+            "Combined_MPG": 95,
+            "Cylinders": 0,
+            "Eng_Displ": 0.0,
+            "Transmission": "AUTOMATIC (A1)",
+            "Drive": "REAR-WHEEL DRIVE"
+        }, ... ]
+}
+```
+
+## Given Make & Model:
+
+#### Query: 
+```html
+https://carsearch-api.herokuapp.com/cars/make=toyo&model=avalon
+```
+#### Output:
+```json
+{
+    "Status": "Success",
+    "Make": "toyo",
+    "Model": "avalon",
+    "Records_Found": 1,
+    "Data": [
+        {
+            "id": 9062,
+            "year": 2019,
+            "category": "MIDSIZE CARS",
+            "make": "TOYOTA",
+            "model": "AVALON",
+            "No_Of_Recalls": 77,
+            "Vehicles_Affected": 13612407,
+            "City_MPG": 22,
+            "Highway_MPG": 31,
+            "Combined_MPG": 25,
+            "Cylinders": 6,
+            "Eng_Displ": 3.5,
+            "Transmission": "AUTOMATIC (S8)",
+            "Drive": "FRONT-WHEEL DRIVE"
+        }, ... ]
+}
+```
+
+## Given Year & Make:
+
+#### Query: 
+```html
+https://carsearch-api.herokuapp.com/cars/year=2019&make=toyo
+```
+#### Output:
+```json
+{
+    "Status": "Success",
+    "Year": 2019,
+    "Make": "toyo",
+    "Model": "avalon",
+    "Records_Found": 1,
+    "Data": [
+        {
+            "id": 9062,
+            "year": 2019,
+            "category": "MIDSIZE CARS",
+            "make": "TOYOTA",
+            "model": "AVALON",
+            "No_Of_Recalls": 77,
+            "Vehicles_Affected": 13612407,
+            "City_MPG": 22,
+            "Highway_MPG": 31,
+            "Combined_MPG": 25,
+            "Cylinders": 6,
+            "Eng_Displ": 3.5,
+            "Transmission": "AUTOMATIC (S8)",
+            "Drive": "FRONT-WHEEL DRIVE"
+        }   ]
+}
+```
 
 ## Given Year, Make & Model:
 
