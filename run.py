@@ -110,7 +110,7 @@ class YearModelList(Resource):
     def get(self, year, model):
         con = sqlite3.connect("./data.db")
         cur = con.cursor()
-        cur.execute("SELECT * FROM cars WHERE year=:year AND make LIKE :model;", {'year' : int(year), 'model' : '%'+(model.upper())+'%'})
+        cur.execute("SELECT * FROM cars WHERE year=:year AND model LIKE :model;", {'year' : int(year), 'model' : '%'+(model.upper())+'%'})
         con.commit()
         
         results = cur.fetchall()
@@ -167,6 +167,7 @@ class ComboList(Resource):
 api.add_resource(IdSearch, '/cars/id=<int:carid>')
 api.add_resource(MakeList, '/cars/make=<string:make>')
 api.add_resource(ModelList, '/cars/model=<string:model>')
+api.add_resource(MakeModelList, '/cars/make=<string:make>&model=<string:model>')
 api.add_resource(YearMakeList, '/cars/year=<int:year>&make=<string:make>')
 api.add_resource(YearModelList, '/cars/year=<int:year>&model=<string:model>')
 api.add_resource(YearList, '/cars/year=<int:year>')
